@@ -1,4 +1,7 @@
-﻿namespace JogoForca;
+﻿using System.Reflection.PortableExecutable;
+using System.Runtime.CompilerServices;
+
+namespace JogoForca;
 
 public class Jogador
 {
@@ -11,42 +14,30 @@ public class Jogador
     private static int facil = 7;
     private static int normal = 6;
     private static int dificil = 5;
-    private int vida = 0;
-    private int pontos = 0;
+    public int vida = 0;
+    public int pontos = 0;
 
     //Constructor
-    public Jogador(int facil, int normal, int dificil, int pontos)
+    public Jogador(int vida, int pontos)
     {
         this.vida = vida;
         this.pontos = pontos;
     }
 
-    
+
     //GET's SET's
-    public int Facil
-    {
-        get => facil;
-        set => facil = value;
-    }
-
-    public int Normal
-    {
-        get => normal;
-        set => normal = value;
-    }
-
-    public int Dificil
-    {
-        get => dificil;
-        set => dificil = value;
-    }
-
     public int Pontos
     {
         get => pontos;
         set => pontos = value;
     }
-    
+
+    public int Vida
+    {
+        get => vida;
+        set => vida = value;
+    }
+
     public static void ChoseDificulty()
     {
         var sair = false;
