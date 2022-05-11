@@ -21,8 +21,10 @@ while (!sair)
             sair = true;
             break;
         case 2:
+            sair = true;
             break;
         case 3:
+            sair = true;
             break;
         case 0:
             Console.WriteLine("Applicacao Terminada com Sucesso");
