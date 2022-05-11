@@ -3,11 +3,6 @@
 Currently in development
 
 Jogo da Forca "Adivinha a palavra" "Guess the word"
-exemplo:
-_ _ _ _ 
-_ a _ a 
-c a _ a 
-c a s a
 
 Object oriented programming 
 Console "Terminal" interface for the game
@@ -17,3 +12,5 @@ Read and Write on a file WordList using a CSV (comma separated values {word,Cate
 
 String manipulation
 Fields/Constructos/Method
+
+exemplo:| _ _ _ _ | > | _ a _ a | > | c a _ a | > | c a s a |
