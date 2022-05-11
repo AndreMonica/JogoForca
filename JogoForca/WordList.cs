@@ -46,4 +46,10 @@ public class WordList
             }
         }
     }
+
+    public static string ChoseWord()
+    {
+        return ("casa");
+    }
+
 }

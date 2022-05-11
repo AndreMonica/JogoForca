@@ -66,34 +66,45 @@ public class Jogo
         var sair = false;
         char letraEscolhida = ' ';
         string letrasUsadas = "                            ";
+        string theWord = "";
+        
         while (!sair)
         {
             Console.Clear();
             Console.WriteLine("------------------------------");
             Console.WriteLine("|       Jogo da Forca        |");
             Console.WriteLine("------------------------------");
-            Console.WriteLine("| Tentativas: {0}            |"); // 3 more spaces cuz {0}
-            Console.WriteLine("| Topico: {0}                |"); // 3 more spaces cuz {0}
-            Console.WriteLine("| Letras ja usadas {0}       |"); // 3 more spaces cuz {0}
-            Console.WriteLine("|" + letrasUsadas +"|"); // 2more spaces cuz ++
+            Console.WriteLine("| Tentativas: {0}            |"); //  more spaces cuz {0}
+            Console.WriteLine("| Topico: {0}                |"); //  more spaces cuz {0}
+            Console.WriteLine("| Letras ja usadas {0}       |"); //  more spaces cuz {0}
+            Console.WriteLine("|" + letrasUsadas +"|"); 
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("|          ADIVINHA          |");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("|" + theWord +"|"); 
+            //Console.WriteLine("|" + theWord +"|"); // 2more spaces cuz ++
             Console.WriteLine("------------------------------");
             letraEscolhida = Convert.ToChar(Console.ReadLine());
 
-            if (!letrasUsadas.Contains(letraEscolhida))
+            
+            if (!letrasUsadas.Contains(letraEscolhida) && !WordList.ChoseWord().Contains(letraEscolhida))
             {
-                
                 letrasUsadas += Convert.ToString(letraEscolhida);
+                // Tentativas -1;
+                
                 if (letrasUsadas.Contains(' '))
                 {
                     letrasUsadas = letrasUsadas.Remove(0, 1);
                 }
             }
-            else
+            else if (WordList.ChoseWord().Contains((letraEscolhida)))
+            {
+                
+            }
             {
                 Console.WriteLine("Letra ja foi usada insira outra");
             }
 
         }
     }
-    
 }

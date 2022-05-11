@@ -58,17 +58,17 @@ public class Jogador
                 {
                     case 1:
                         Console.WriteLine("Dificuldade Facil escolhida");
-                        Jogador j1 = new Jogador(facil);
+                        Jogador jf = new Jogador(facil);
                         sair = true;
                         break;
                     case 2:
                         Console.WriteLine("Dificuldade Normal escolhida");
-                        Jogador j2 = new Jogador(normal);
+                        Jogador jn = new Jogador(normal);
                         sair = true;
                         break;
                     case 3:
                         Console.WriteLine("Dificuldade Dificil escolhida");
-                        Jogador j3 = new Jogador(dificil);
+                        Jogador jd = new Jogador(dificil);
                         sair = true;
                         break;
                     case 0:
