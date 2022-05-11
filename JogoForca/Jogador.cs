@@ -15,13 +15,12 @@ public class Jogador
     private static int normal = 6;
     private static int dificil = 5;
     public int vida = 0;
-    public int pontos = 0;
+    private int pontos = 0;
 
     //Constructor
-    public Jogador(int vida, int pontos)
+    public Jogador(int vida)
     {
         this.vida = vida;
-        this.pontos = pontos;
     }
 
 
@@ -59,14 +58,17 @@ public class Jogador
                 {
                     case 1:
                         Console.WriteLine("Dificuldade Facil escolhida");
+                        Jogador j1 = new Jogador(facil);
                         sair = true;
                         break;
                     case 2:
                         Console.WriteLine("Dificuldade Normal escolhida");
+                        Jogador j2 = new Jogador(normal);
                         sair = true;
                         break;
                     case 3:
                         Console.WriteLine("Dificuldade Dificil escolhida");
+                        Jogador j3 = new Jogador(dificil);
                         sair = true;
                         break;
                     case 0:

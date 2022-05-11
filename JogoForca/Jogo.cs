@@ -16,7 +16,13 @@ public class Jogo
             // Mostrar os Pontos
             // Mostrar condicao de derrota "Fim de jogo, perdeu!"
             // Mostrar condicao de victoria "Fim de jogo, ganhou!"
-    
+    private Jogador _jogador;
+
+    public Jogo(Jogador jogador)
+    {
+        _jogador = jogador;
+    }
+
     public static void Inicio()
     {
         var sair = false;
@@ -57,7 +63,37 @@ public class Jogo
     }
     public static void Jogar()
     {
-        Console.WriteLine("TESTE Jogo CALL METHOD");
+        var sair = false;
+        char letraEscolhida = ' ';
+        string letrasUsadas = "                            ";
+        while (!sair)
+        {
+            Console.Clear();
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("|       Jogo da Forca        |");
+            Console.WriteLine("------------------------------");
+            Console.WriteLine("| Tentativas: {0}            |"); // 3 more spaces cuz {0}
+            Console.WriteLine("| Topico: {0}                |"); // 3 more spaces cuz {0}
+            Console.WriteLine("| Letras ja usadas {0}       |"); // 3 more spaces cuz {0}
+            Console.WriteLine("|" + letrasUsadas +"|"); // 2more spaces cuz ++
+            Console.WriteLine("------------------------------");
+            letraEscolhida = Convert.ToChar(Console.ReadLine());
+
+            if (!letrasUsadas.Contains(letraEscolhida))
+            {
+                
+                letrasUsadas += Convert.ToString(letraEscolhida);
+                if (letrasUsadas.Contains(' '))
+                {
+                    letrasUsadas = letrasUsadas.Remove(0, 1);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Letra ja foi usada insira outra");
+            }
+
+        }
     }
     
 }
