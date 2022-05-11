@@ -67,7 +67,9 @@ public class Jogo
         char letraEscolhida = ' ';
         string letrasUsadas = "                            ";
         string theWord = "";
+        string totalWord = "";
         var primeiraVez = true;
+        
         
         while (!sair)
         {
@@ -82,15 +84,15 @@ public class Jogo
             Console.WriteLine("------------------------------");
             Console.WriteLine("|          ADIVINHA          |");
             Console.WriteLine("------------------------------");
-            do
+            
+            while (primeiraVez)
             {
                 for (int i = 0; i < WordList.ChoseWord().Length; i++)
                 {
                     theWord += "_ ";
                 }
                 primeiraVez = false;
-            } while (primeiraVez);
-            
+            }
             Console.WriteLine("|  " + theWord +" |"); 
             Console.WriteLine("------------------------------");
             letraEscolhida = Convert.ToChar(Console.ReadLine());
@@ -108,15 +110,18 @@ public class Jogo
             }
             else if (WordList.ChoseWord().Contains((letraEscolhida)))
             {
+                totalWord = theWord;
+                theWord = "";  
                 for (int i = 0; i < WordList.ChoseWord().Length; i++)
                 {
-                    theWord += "_ ";
+                    if (Convert.ToChar(WordList.ChoseWord().Substring(i, 1)) == letraEscolhida)
+                    {
+                        theWord += letraEscolhida;
+                    }
+                    else{theWord += "_";}
                 }
-            }
-            {
-                Console.WriteLine("Letra ja foi usada insira outra");
-            }
 
+            }
         }
     }
 }
