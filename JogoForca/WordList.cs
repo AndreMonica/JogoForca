@@ -27,18 +27,22 @@ public class WordList
             switch (opcao)
             {
                 case 1:
+                    // Escrever num fichero CSV
                     Console.WriteLine("TESTE INSERIR FILME CALL ");
                     sair = true;
                     break;
                 case 2:
+                    // Escrever num fichero CSV
                     Console.WriteLine("TESTE INSERIR Jogo CALL ");
                     sair = true;
                     break;
                 case 3:
+                    // Escrever num fichero CSV
                     Console.WriteLine("TESTE INSERIR Pais CALL ");
                     sair = true;
                     break;
                 case 0:
+                    // Escrever num fichero CSV
                     Console.WriteLine("TESTE INICIO CALL METHOD");
                     Jogo.Inicio();
                     sair = true;

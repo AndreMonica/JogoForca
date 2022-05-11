@@ -101,7 +101,9 @@ public class Jogo
             if (!letrasUsadas.Contains(letraEscolhida) && !WordList.ChoseWord().Contains(letraEscolhida))
             {
                 letrasUsadas += Convert.ToString(letraEscolhida);
-                // Tentativas -1;
+                // Tentativas -1; 
+                // NAo consigo aceder a Jogador.Vida 
+                // Nem consigo usar gets e sets 
                 
                 if (letrasUsadas.Contains(' '))
                 {
@@ -110,17 +112,18 @@ public class Jogo
             }
             else if (WordList.ChoseWord().Contains((letraEscolhida)))
             {
-                totalWord = theWord;
-                theWord = "";  
+                theWord = ""; // sei que isto causa o problema de persistencia
                 for (int i = 0; i < WordList.ChoseWord().Length; i++)
                 {
                     if (Convert.ToChar(WordList.ChoseWord().Substring(i, 1)) == letraEscolhida)
                     {
                         theWord += letraEscolhida;
+                        // falta persistencia dos dados (ver a correr o codigo)
+                        // tentei tipo 
+                        //totalWord = theWord.Substring(i, 1).Replace('_', letraEscolhida);  <<< qql coisa deste genero para ir substituindo numa string a parte
                     }
-                    else{theWord += "_";}
+                    else{theWord += "_ ";}
                 }
-
             }
         }
     }
