@@ -10,21 +10,21 @@ public class Jogador
     // Vida Dificil: 5 tentativas
     // Pontos (total de letras correctas)
 
-    //Propreties
+    // Fields
     private static int facil = 7;
     private static int normal = 6;
     private static int dificil = 5;
     public int vida = 0;
     private int pontos = 0;
 
-    //Constructor
+    // Constructor
     public Jogador(int vida)
     {
         this.vida = vida;
     }
 
 
-    //GET's SET's
+    // Properties
     public int Pontos
     {
         get => pontos;
@@ -37,6 +37,7 @@ public class Jogador
         set => vida = value;
     }
 
+    // Methods
     public static void ChoseDificulty()
     {
         var sair = false;
@@ -58,6 +59,7 @@ public class Jogador
                 {
                     case 1:
                         Console.WriteLine("Dificuldade Facil escolhida");
+                        // Verificar se consigo ter acesso ao jf fora desta classe
                         Jogador jf = new Jogador(facil);
                         sair = true;
                         break;
