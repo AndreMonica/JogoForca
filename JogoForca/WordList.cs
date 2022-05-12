@@ -65,7 +65,7 @@ public class WordList
                     word = Console.ReadLine();
                     tipo = 0;
                     string csv = string.Format("{0},{1}\n", word, tipo);
-                    StreamWriter wr = new StreamWriter(", csv);
+                    StreamWriter wr = new StreamWriter( @"c:\AndreMJogo\WordList.csv", csv);
                     wr.WriteLine("Teste");
                     wr.Close();
                     sair = true;
