@@ -126,7 +126,7 @@ public class Jogo
             primeiraVez = false;
         }
         
-        while (!sair)
+        while (!sair) // this.vida no work. Jogador.vida tambem nao
         {
             Console.Clear();
             Console.WriteLine("------------------------------");
@@ -146,7 +146,7 @@ public class Jogo
                 break;
             }
 
-            if (/** vida <= 0 >>> REMOVE FALSE*/  false)
+            if (  false)
             {
                 Jogo.Derrota();
                 sair = true;
@@ -164,8 +164,7 @@ public class Jogo
                 letrasUsadas += Convert.ToString(letraEscolhida);
                 // Tentativas -1; 
                 // Nao consigo aceder a Jogador.Vida 
-                // Nem consigo usar gets e sets 
-                
+
                 if (letrasUsadas.Contains(' '))
                 {
                     letrasUsadas = letrasUsadas.Remove(0, 1);

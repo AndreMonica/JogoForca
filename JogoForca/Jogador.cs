@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace JogoForca;
 
-public class Jogador
+public class Jogador 
 {
     // Vida   Fácil: 7 tentativas
     // Vida  Normal: 6 tentativas
@@ -14,7 +14,7 @@ public class Jogador
     private  int facil = 7;
     private  int normal = 6;
     private  int dificil = 5;
-    private int vida;
+    public int vida;
 
     // Constructor
     public Jogador()
