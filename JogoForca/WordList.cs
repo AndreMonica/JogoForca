@@ -33,7 +33,7 @@ public class WordList
             opcao = Int32.Parse(Console.ReadLine());
             
             
-            // build  CSV and file stuff >> NET >>https://docs.microsoft.com/en-us/dotnet/api/system.io.file?view=net-6.0
+    /**        // build  CSV and file stuff >> NET >>https://docs.microsoft.com/en-us/dotnet/api/system.io.file?view=net-6.0
             string path = @"c:\AndreMJogo\WordList.csv";
             if (!File.Exists(path))
             {
@@ -55,19 +55,20 @@ public class WordList
                     Console.WriteLine(s);
                 }
             }
-         
+         */
             
             switch (opcao)
             {
                 case 1:
                     // Escrever num fichero CSV
                     Console.WriteLine("TESTE INSERIR FILME CALL ");
-                    word = Console.ReadLine();
+                  /**  word = Console.ReadLine();
                     tipo = 0;
                     string csv = string.Format("{0},{1}\n", word, tipo);
                     StreamWriter wr = new StreamWriter( @"c:\AndreMJogo\WordList.csv", csv);
                     wr.WriteLine("Teste");
                     wr.Close();
+                    */
                     sair = true;
                     break;
                 case 2:

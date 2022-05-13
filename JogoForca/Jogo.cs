@@ -1,4 +1,7 @@
-﻿namespace JogoForca;
+﻿using System.Diagnostics;
+using System.Globalization;
+
+namespace JogoForca;
 
 public class Jogo
 {
@@ -50,13 +53,50 @@ public class Jogo
             }
         }
     }
+
+    public static void Vitoria()
+    {
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("|          Ganhou!!!!        |");
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("------------------------------");
+    }
+
+    public static void Derrota()
+    {
+        int opcao = 0;
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("|          Ganhou!!!!        |");
+        Console.WriteLine("------------------------------");
+        Console.WriteLine("- 1)  Comecar de novo        -");
+        Console.WriteLine("- 0)  Terminar programa      -");
+        opcao = Int32.Parse(Console.ReadLine());
+
+        switch (opcao)
+        {
+            case 1:
+                Jogo.Inicio();
+                break;
+            case 0:
+                Jogo.Sair();
+                break;
+        }
+    }
+
+    public static void Sair()
+    {
+        System.Environment.Exit(0);
+    }
     public static void Jogar()
     {
         var sair = false;
         char letraEscolhida = ' ';
-        string letrasUsadas = "                            ";
-        string theWord = "";
-        string totalWord = "";
+        string letrasUsadas = "                            "; 
+     
+        char[] resultado = new char[WordList.ChoseWord().Length];
+        resultado[0] = '_';
         var primeiraVez = true;
         
         
@@ -73,20 +113,25 @@ public class Jogo
             Console.WriteLine("------------------------------");
             Console.WriteLine("|          ADIVINHA          |");
             Console.WriteLine("------------------------------");
-            
+            if (!(new String(resultado).Contains("_")))
+            {
+                Jogo.Vitoria();
+                break;
+            }
+         
             while (primeiraVez)
             {
                 for (int i = 0; i < WordList.ChoseWord().Length; i++)
                 {
-                    theWord += "_ ";
+                    resultado[i] = '_';
                 }
                 primeiraVez = false;
             }
-            Console.WriteLine("|  " + theWord +" |"); 
+            Console.WriteLine("|  " + new String(resultado) +" |"); 
             Console.WriteLine("------------------------------");
             letraEscolhida = Convert.ToChar(Console.ReadLine());
-
             
+
             if (!letrasUsadas.Contains(letraEscolhida) && !WordList.ChoseWord().Contains(letraEscolhida))
             {
                 letrasUsadas += Convert.ToString(letraEscolhida);
@@ -101,17 +146,13 @@ public class Jogo
             }
             else if (WordList.ChoseWord().Contains((letraEscolhida)))
             {
-                theWord = ""; // sei que isto causa o problema de persistencia
                 for (int i = 0; i < WordList.ChoseWord().Length; i++)
                 {
                     if (Convert.ToChar(WordList.ChoseWord().Substring(i, 1)) == letraEscolhida)
                     {
-                        theWord += letraEscolhida;
-                        // falta persistencia dos dados (ver a correr o codigo)
-                        // tentei tipo 
-                        //totalWord = theWord.Substring(i, 1).Replace('_', letraEscolhida);  <<< qql coisa deste genero para ir substituindo numa string a parte
+
+                        resultado[i] = letraEscolhida;
                     }
-                    else{theWord += "_ ";}
                 }
             }
         }
