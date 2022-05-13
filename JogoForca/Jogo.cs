@@ -39,7 +39,7 @@ public class Jogo
                     sair = true;
                     break;
                 case 2:
-                    Jogador.ChoseDificulty();
+                    Jogador j = new Jogador();
                     sair = true;
                     break;
                 case 3:
@@ -57,11 +57,25 @@ public class Jogo
     public static void Vitoria()
     {
         Console.Clear();
+        int opcao = 0;
         Console.WriteLine("------------------------------");
         Console.WriteLine("------------------------------");
         Console.WriteLine("|          Ganhou!!!!        |");
         Console.WriteLine("------------------------------");
+        Console.WriteLine("- 1)  Comecar de novo        -");
+        Console.WriteLine("- 0)  Terminar programa      -");
         Console.WriteLine("------------------------------");
+        opcao = Int32.Parse(Console.ReadLine());
+
+        switch (opcao)
+        {
+            case 1:
+                Jogo.Inicio();
+                break;
+            case 0:
+                Jogo.Sair();
+                break;
+        }
     }
 
     public static void Derrota()
@@ -98,10 +112,21 @@ public class Jogo
         char letraEscolhida = ' ';
         string letrasUsadas = "                            "; 
      
-        char[] resultado = new char[WordList.ChoseWord().Length];
-        resultado[1] = '_';
-        var primeiraVez = true;
         
+       
+        var primeiraVez = true;
+
+        WordList.ReadFile();
+        WordList chave = WordList.RandomWord();
+        char[] resultado = new char[chave.word.Length];
+        while (primeiraVez)
+        {
+            for (int i = 0; i < chave.word.Length; i++)
+            {
+                resultado[i] = '_';
+            }
+            primeiraVez = false;
+        }
         
         while (!sair)
         {
@@ -128,20 +153,13 @@ public class Jogo
                 break;
             }
          
-            while (primeiraVez)
-            {
-                for (int i = 0; i < WordList.ChoseWord().Length; i++)
-                {
-                    resultado[i] = '_';
-                }
-                primeiraVez = false;
-            }
+           
             Console.WriteLine("|  " + new String(resultado) +" |"); 
             Console.WriteLine("------------------------------");
             letraEscolhida = Convert.ToChar(Console.ReadLine());
             
 
-            if (!letrasUsadas.Contains(letraEscolhida) && !WordList.ChoseWord().Contains(letraEscolhida))
+            if (!letrasUsadas.Contains(letraEscolhida) && !chave.word.Contains(letraEscolhida))
             {
                 letrasUsadas += Convert.ToString(letraEscolhida);
                 // Tentativas -1; 
@@ -153,11 +171,11 @@ public class Jogo
                     letrasUsadas = letrasUsadas.Remove(0, 1);
                 }
             }
-            else if (WordList.ChoseWord().Contains((letraEscolhida)))
+            else if (chave.word.Contains((letraEscolhida)))
             {
-                for (int i = 0; i < WordList.ChoseWord().Length; i++)
+                for (int i = 0; i < chave.word.Length; i++)
                 {
-                    if (Convert.ToChar(WordList.ChoseWord().Substring(i, 1)) == letraEscolhida)
+                    if (Convert.ToChar(chave.word.Substring(i, 1)) == letraEscolhida)
                     {
                         resultado[i] = letraEscolhida;
                     }

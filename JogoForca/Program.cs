@@ -18,5 +18,5 @@ using Microsoft.VisualBasic;
             // Mostrar condicao de derrota "Fim de jogo, perdeu!"
             // Mostrar condicao de victoria "Fim de jogo, ganhou!"
     // Escolher sair (terminar aplicacao)
-
+WordList.RandomWord();
 Jogo.Inicio();

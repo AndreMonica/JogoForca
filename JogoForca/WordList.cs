@@ -1,4 +1,8 @@
-﻿namespace JogoForca;
+﻿using System.Diagnostics;
+using System.Diagnostics.Tracing;
+using System.Runtime.CompilerServices;
+
+namespace JogoForca;
 using System.IO;
 
 public class WordList
@@ -8,12 +12,21 @@ public class WordList
     // Nomes de Paises
     
     // Fields
-    public static string word;
-    public static int tipo;
-    
+    public  string word;
+    public  Categoria categoria;
 
     // Constructor
-  
+    public WordList(string word, Categoria categoria)
+    {
+        this.word = word;
+        this.categoria = categoria;
+    }
+
+    
+    // fields
+    public static List<WordList> palavras = new List<WordList>();
+    
+    
     // Method
     public static void InsertWord()
     {
@@ -40,13 +53,6 @@ public class WordList
                 case 1:
                     // Escrever num fichero CSV
                     Console.WriteLine("TESTE INSERIR FILME CALL ");
-                  /**  word = Console.ReadLine();
-                    tipo = 0;
-                    string csv = string.Format("{0},{1}\n", word, tipo);
-                    StreamWriter wr = new StreamWriter( @"c:\AndreMJogo\WordList.csv", csv);
-                    wr.WriteLine("Teste");
-                    wr.Close();
-                    */
                     sair = true;
                     break;
                 case 2:
@@ -68,11 +74,48 @@ public class WordList
             }
         }
     }
+    
 
-    public static string ChoseWord()
+    public static void ReadFile()
     {
-        //Return a random word from the list with the type, filme, jogo ou pais
-        return ("casa");
+        using (StreamReader sr = new StreamReader("/Users/Andre/RiderProjects/JogoForca_21210/palavras.csv")) {
+            string line;
+
+            // Read and display lines from the file until 
+            // the end of the file is reached. 
+            while ((line = sr.ReadLine()) != null)
+            {
+                String[] splitted = line.Split(';');
+                WordList p = new WordList(splitted[0], (Categoria) Int16.Parse(splitted[1]));
+                palavras.Add(p);
+            }
+        }
+    }
+
+    public static WordList RandomWord()
+    {
+        //Escolher uma categoria aleatoria
+        var rnd = new Random();
+
+        //Gerar uma Categoria aleatoria com base no quantidade de valores que este Enumerado têm
+        Categoria escolhida = (Categoria)rnd.Next(Enum.GetNames(typeof(Categoria)).Length);
+        // Console.WriteLine(escolhida);
+
+        //Lista para guardar apenas as palavras da categoria selecionada
+        List<WordList> palavrasCategoria = new List<WordList>();
+
+        //Percorrer todas as palavras que estavam no ficheiro e adicionalas à nova lista
+        Debug.Assert(palavras != null, nameof(palavras) + " != null");
+        foreach (var pav in palavras)
+        {
+            if (pav.categoria == escolhida)
+            {
+                palavrasCategoria.Add(pav);
+            }
+        }
+
+        //Obter uma chave aleatoria (Palavra que o utilizador deve advinhar)
+        return (palavrasCategoria[rnd.Next(palavrasCategoria.Count)]);
     }
 
 }
