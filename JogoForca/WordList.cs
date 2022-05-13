@@ -33,29 +33,7 @@ public class WordList
             opcao = Int32.Parse(Console.ReadLine());
             
             
-    /**        // build  CSV and file stuff >> NET >>https://docs.microsoft.com/en-us/dotnet/api/system.io.file?view=net-6.0
-            string path = @"c:\AndreMJogo\WordList.csv";
-            if (!File.Exists(path))
-            {
-                // Create a file to write to.
-                using (StreamWriter sw = File.CreateText(path))
-                {
-                    sw.WriteLine("Hello");
-                    sw.WriteLine("And");
-                    sw.WriteLine("Welcome");
-                }
-            }
-
-            // Open the file to read from.
-            using (StreamReader sr = File.OpenText(path))
-            {
-                string s;
-                while ((s = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(s);
-                }
-            }
-         */
+   
             
             switch (opcao)
             {

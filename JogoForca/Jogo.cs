@@ -56,6 +56,7 @@ public class Jogo
 
     public static void Vitoria()
     {
+        Console.Clear();
         Console.WriteLine("------------------------------");
         Console.WriteLine("------------------------------");
         Console.WriteLine("|          Ganhou!!!!        |");
@@ -65,13 +66,15 @@ public class Jogo
 
     public static void Derrota()
     {
+        Console.Clear();
         int opcao = 0;
         Console.WriteLine("------------------------------");
         Console.WriteLine("------------------------------");
-        Console.WriteLine("|          Ganhou!!!!        |");
+        Console.WriteLine("|    Fim de jogo, perdeu!    |");
         Console.WriteLine("------------------------------");
         Console.WriteLine("- 1)  Comecar de novo        -");
         Console.WriteLine("- 0)  Terminar programa      -");
+        Console.WriteLine("------------------------------");
         opcao = Int32.Parse(Console.ReadLine());
 
         switch (opcao)
@@ -96,7 +99,7 @@ public class Jogo
         string letrasUsadas = "                            "; 
      
         char[] resultado = new char[WordList.ChoseWord().Length];
-        resultado[0] = '_';
+        resultado[1] = '_';
         var primeiraVez = true;
         
         
@@ -118,6 +121,12 @@ public class Jogo
                 Jogo.Vitoria();
                 break;
             }
+
+            if (/** vida <= 0 >>> REMOVE FALSE*/  false)
+            {
+                Jogo.Derrota();
+                break;
+            }
          
             while (primeiraVez)
             {
@@ -136,7 +145,7 @@ public class Jogo
             {
                 letrasUsadas += Convert.ToString(letraEscolhida);
                 // Tentativas -1; 
-                // NAo consigo aceder a Jogador.Vida 
+                // Nao consigo aceder a Jogador.Vida 
                 // Nem consigo usar gets e sets 
                 
                 if (letrasUsadas.Contains(' '))
@@ -150,7 +159,6 @@ public class Jogo
                 {
                     if (Convert.ToChar(WordList.ChoseWord().Substring(i, 1)) == letraEscolhida)
                     {
-
                         resultado[i] = letraEscolhida;
                     }
                 }
