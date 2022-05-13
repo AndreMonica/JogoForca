@@ -110,10 +110,8 @@ public class Jogo
     {
         var sair = false;
         char letraEscolhida = ' ';
-        string letrasUsadas = "                            "; 
-     
-        
-       
+        string letrasUsadas = "                            ";
+
         var primeiraVez = true;
 
         WordList.ReadFile();
@@ -136,7 +134,7 @@ public class Jogo
             Console.WriteLine("------------------------------");
             Console.WriteLine("| Tentativas: {0}            |"); //  more spaces cuz {0}
             Console.WriteLine("| Topico: {0}                |"); //  more spaces cuz {0}
-            Console.WriteLine("| Letras ja usadas {0}       |"); //  more spaces cuz {0}
+            Console.WriteLine("| Letras ja usadas:          |"); //  more spaces cuz {0}
             Console.WriteLine("|" + letrasUsadas +"|"); 
             Console.WriteLine("------------------------------");
             Console.WriteLine("|          ADIVINHA          |");
@@ -144,16 +142,18 @@ public class Jogo
             if (!(new String(resultado).Contains("_")))
             {
                 Jogo.Vitoria();
+                sair = true;
                 break;
             }
 
             if (/** vida <= 0 >>> REMOVE FALSE*/  false)
             {
                 Jogo.Derrota();
+                sair = true;
                 break;
             }
          
-           
+            
             Console.WriteLine("|  " + new String(resultado) +" |"); 
             Console.WriteLine("------------------------------");
             letraEscolhida = Convert.ToChar(Console.ReadLine());
