@@ -39,7 +39,7 @@ public class Jogo
                     sair = true;
                     break;
                 case 2:
-                    Jogador j = new Jogador();
+                    Jogador player = new Jogador();
                     sair = true;
                     break;
                 case 3:
@@ -111,8 +111,9 @@ public class Jogo
         var sair = false;
         char letraEscolhida = ' ';
         string letrasUsadas = "                            ";
-
         var primeiraVez = true;
+        string spaceCategoria = "";
+        string spaceAdivinha = "";
 
         WordList.ReadFile();
         WordList chave = WordList.RandomWord();
@@ -126,14 +127,18 @@ public class Jogo
             primeiraVez = false;
         }
         
-        while (!sair) // this.vida no work. Jogador.vida tambem nao
+        
+        while (!sair) 
         {
             Console.Clear();
             Console.WriteLine("------------------------------");
             Console.WriteLine("|       Jogo da Forca        |");
             Console.WriteLine("------------------------------");
-            Console.WriteLine("| Tentativas: {0}            |"); //  more spaces cuz {0}
-            Console.WriteLine("| Topico: {0}                |"); //  more spaces cuz {0}
+            Console.WriteLine("| Tentativas: {0}              |", Jogador.vida ); //  more spaces cuz {0}
+            if (chave.categoria == Categoria.FILMES) { spaceCategoria = "             ";}
+            if (chave.categoria == Categoria.JOGOS)  { spaceCategoria = "              ";}
+            if (chave.categoria == Categoria.PAISES) { spaceCategoria = "             ";}
+            Console.WriteLine("| Topico: {0}{1}|", chave.categoria, spaceCategoria ); //  more spaces cuz {0}
             Console.WriteLine("| Letras ja usadas:          |"); //  more spaces cuz {0}
             Console.WriteLine("|" + letrasUsadas +"|"); 
             Console.WriteLine("------------------------------");
@@ -142,29 +147,58 @@ public class Jogo
             if (!(new String(resultado).Contains("_")))
             {
                 Jogo.Vitoria();
-                sair = true;
                 break;
             }
-
-            if (  false)
+            
+            if (Jogador.vida < 0)
             {
                 Jogo.Derrota();
-                sair = true;
                 break;
             }
-         
-            
-            Console.WriteLine("|  " + new String(resultado) +" |"); 
-            Console.WriteLine("------------------------------");
-            letraEscolhida = Convert.ToChar(Console.ReadLine());
-            
 
+            for (int i = 0; i < 11; i++)
+            {
+                if ((spaceAdivinha.Length + resultado.Length + spaceAdivinha.Length) < letrasUsadas.Length)
+                {
+                    spaceAdivinha += " ";
+                }
+            }
+           
+
+            
+            Console.WriteLine("|{0}" + new String(resultado) +"{0}|", spaceAdivinha); 
+            Console.WriteLine("------------------------------");
+            
+            // catch error imput
+            object[] values = { 'r', "s", "word", (byte) 83, 77, 109324, 335812911,
+                new DateTime(2009, 3, 10), (uint) 1934,
+                (sbyte) -17, 169.34, 175.6m, null };
+            char result = '\0';
+            try {
+                letraEscolhida = Convert.ToChar(Console.ReadLine());
+                Console.WriteLine("The {0} value {1} converts to {2}.",
+                    letraEscolhida.GetType().Name, letraEscolhida, result);
+            }
+            catch (FormatException e) {
+                Console.WriteLine(e.Message);
+            }
+            catch (InvalidCastException) {
+                Console.WriteLine("Conversion of the {0} value {1} to a Char is not supported.",
+                    letraEscolhida.GetType().Name, letraEscolhida);
+            }
+            catch (OverflowException) {
+                Console.WriteLine("The {0} value {1} is outside the range of the Char data type.",
+                    letraEscolhida.GetType().Name, letraEscolhida);
+            }
+            catch (NullReferenceException) {
+                Console.WriteLine("Cannot convert a null reference to a Char.");
+            }
+            
+            // make spacing on chose letters
             if (!letrasUsadas.Contains(letraEscolhida) && !chave.word.Contains(letraEscolhida))
             {
                 letrasUsadas += Convert.ToString(letraEscolhida);
-                // Tentativas -1; 
-                // Nao consigo aceder a Jogador.Vida 
-
+                Jogador.vida--;
                 if (letrasUsadas.Contains(' '))
                 {
                     letrasUsadas = letrasUsadas.Remove(0, 1);

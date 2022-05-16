@@ -11,10 +11,7 @@ public class Jogador
     // Pontos (total de letras correctas)
 
     // Fields
-    private  int facil = 7;
-    private  int normal = 6;
-    private  int dificil = 5;
-    public int vida;
+    public static int vida;
 
     // Constructor
     public Jogador()
@@ -35,18 +32,18 @@ public class Jogador
         {
             case 1:
                 Console.WriteLine("Dificuldade Facil escolhida");
-                this.vida = 7;
-                Jogo.Inicio();
+                vida = 7;
+                Jogo.Jogar();
                 break;
             case 2:
                 Console.WriteLine("Dificuldade Normal escolhida");
-                this.vida = 6;
-                Jogo.Inicio();
+                vida = 6;
+                Jogo.Jogar();
                 break;
             case 3:
                 Console.WriteLine("Dificuldade Dificl escolhida");
-                this.vida = 5;
-                Jogo.Inicio();
+                vida = 5;
+                Jogo.Jogar();
                 break;
             case 0:
                 Console.WriteLine("TESTE INICIO CALL METHOD");
@@ -55,9 +52,8 @@ public class Jogador
             default:
                 throw new Exception("Falhou a criação do Jogador parametro inválido");
         }
+        
     }
-
-
     // Properties
 
     // Methods
