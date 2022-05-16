@@ -78,7 +78,7 @@ public class WordList
 
     public static void ReadFile()
     {
-        using (StreamReader sr = new StreamReader("/Users/Andre/RiderProjects/JogoForca_21210/palavras.csv")) {
+        using (StreamReader sr = new StreamReader("/Users/Andre/RiderProjects/JogoForca/words.csv")) {
             string line;
 
             // Read and display lines from the file until 
